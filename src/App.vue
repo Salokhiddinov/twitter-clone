@@ -1,5 +1,6 @@
 <template>
   <TheHeader></TheHeader>
+  <HomePage></HomePage>
 </template>
 
 <style>
@@ -9,6 +10,7 @@
     --logo-font: 'Fredoka One';
     --font: 'Poppins';
     --light-grey: #e5e5e5;
+    --dark-grey: #727272;
     --white: #fff;
     --blue: #00ACEE;
   }

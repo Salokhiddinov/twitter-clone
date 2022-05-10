@@ -12,6 +12,7 @@
         margin:0;
         padding: 10px;
         text-align: center;
+        letter-spacing: 0.05rem;
     }
     header{
         background-color: var(--blue);
