@@ -3,7 +3,9 @@
   <main>
     <WelcomeText></WelcomeText>
     <TheNavigation></TheNavigation>
+    <main>
     <router-view></router-view>
+    </main>
   </main>
 </template>
 
