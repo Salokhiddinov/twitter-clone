@@ -1,23 +1,43 @@
 <template>
   <TheHeader></TheHeader>
-  <HomePage></HomePage>
+  <main>
+    <WelcomeText></WelcomeText>
+    <TheNavigation></TheNavigation>
+    <router-view></router-view>
+  </main>
 </template>
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:ital,wght@0,100;0,400;0,600;0,700;1,100;1,400&display=swap');
+<script>
+import WelcomeText from "@/components/home/WelcomeText.vue";
+export default {
+  components: {
+    WelcomeText,
+  },
+};
+</script>
 
-  :root{
-    --logo-font: 'Fredoka One';
-    --font: 'Poppins';
-    --light-grey: #e5e5e5;
-    --dark-grey: #727272;
-    --white: #fff;
-    --blue: #00ACEE;
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:ital,wght@0,100;0,400;0,600;0,700;1,100;1,400&display=swap");
+
+:root {
+  --logo-font: "Fredoka One";
+  --font: "Poppins";
+  --light-grey: #e5e5e5;
+  --dark-grey: #727272;
+  --white: #fff;
+  --blue: #00acee;
+}
+body {
+  font-family: var(--font);
+  background-color: var(--light-grey);
+  margin: 0;
+  padding: 0;
+}
+@media screen and (min-width: 1200px) {
+  main {
+    display: grid;
+    width: 1200px;
+    margin: auto;
   }
-  body{
-    font-family: var(--font);
-    background-color: var(--light-grey);
-    margin: 0;
-    padding: 0;
-  }
+}
 </style>
