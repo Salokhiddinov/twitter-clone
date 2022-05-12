@@ -1,22 +1,12 @@
 <template>
   <TheHeader></TheHeader>
-  <main>
-    <WelcomeText></WelcomeText>
-    <TheNavigation></TheNavigation>
-    <main>
-    <router-view></router-view>
-    </main>
-  </main>
+<main>
+  <router-view></router-view>
+
+</main>
 </template>
 
-<script>
-import WelcomeText from "@/components/home/WelcomeText.vue";
-export default {
-  components: {
-    WelcomeText,
-  },
-};
-</script>
+
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:ital,wght@0,100;0,400;0,600;0,700;1,100;1,400&display=swap");

@@ -1,5 +1,5 @@
 <template>
-  <BaseCard>
+  <BaseCard class="card">
     <nav>
       <h3>Navigation</h3>
       <ul>
@@ -30,7 +30,9 @@ li {
 .link{
     text-decoration: none;
     color: var(--grey);
-
+}
+.card{
+  max-height: 230px;
 }
 button {
   padding: 10px 0;
