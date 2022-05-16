@@ -9,7 +9,8 @@
           <button class="sort">Following</button>
         </BaseCard>
         <router-link to="new-tweet" class="new-tweet">
-          <i class="fa-solid fa-plus"></i>New Tweet
+          <i class="fa-solid fa-plus"></i>
+          <span class="new-tweet-text">New Tweet</span>
         </router-link>
       </div>
       <BaseCard>
@@ -36,6 +37,11 @@ import WelcomeText from "@/components/home/WelcomeText.vue";
 export default {
   components: {
     WelcomeText,
+  },
+  computed: {
+    count() {
+      return this.$store.state.count;
+    },
   },
 };
 </script>
@@ -97,17 +103,51 @@ h4 {
 .tweets {
   grid-column: 5 / 13;
 }
-.tweet-controls{
+.tweet-controls {
   display: flex;
+  margin-bottom: 10px;
 }
-.sorting{
-  width: 80%;
+.tweet-controls button {
+  border-style: none;
+  background-color: var(--light-grey);
+  border-radius: 10px;
+  padding: 5px 20px;
+  transition: all 0.3s ease;
+  color: var(--dark-grey);
+  margin-right: 10px;
 }
-.new-tweet{
+
+.selected {
+  background-color: var(--blue);
+  color: white;
+}
+
+.sorting {
+  width: 85%;
+}
+.new-tweet {
   width: 20%;
   padding: 10px 25px;
   background-color: var(--blue);
   color: white;
   text-decoration: none;
+  margin-left: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  transition: .3s all ease;
+}
+.new-tweet:hover{
+  background-color: white;
+  color: var(--dark-grey);
+}
+.new-tweet:active{
+  background-color: var(--dark-grey);
+  color: white;
+}
+.new-tweet-text{
+  padding-left: 5px;
 }
 </style>

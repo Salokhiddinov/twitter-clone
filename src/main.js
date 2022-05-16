@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import router from "@/router.js";
+import store from "@/store/store.js";
 import App from "./App.vue";
 import HomePage from "@/pages/HomePage.vue";
 import TheHeader from "@/components/layout/TheHeader.vue";
@@ -17,5 +18,6 @@ app.component("TheFooter", TheFooter);
 app.component("BaseCard", BaseCard);
 app.component("BaseTweet", BaseTweet);
 
+app.use(store)
 app.use(router);
 app.mount("#app");
