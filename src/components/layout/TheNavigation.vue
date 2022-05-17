@@ -3,10 +3,10 @@
     <nav>
       <h3>Navigation</h3>
       <ul>
-        <li><button><router-link to="/" class="link">Browse</router-link></button></li>
-        <li><button><router-link to="/sign-up" class="link">Sign Up</router-link></button></li>
-        <li><button><router-link to="/" class="link">Profile</router-link></button></li>
-        <li><button><router-link to="/" class="link">About App</router-link></button></li>
+        <li><router-link to="/" class="link"><button>Browse</button></router-link></li>
+        <li><router-link to="/sign-up" class="link"><button>Sign Up</button></router-link></li>
+        <li><router-link to="/" class="link"><button>Profile</button></router-link></li>
+        <li><router-link to="/" class="link"><button>About App</button></router-link></li>
       </ul>
     </nav>
   </BaseCard>
