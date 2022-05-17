@@ -8,6 +8,7 @@ import TheNavigation from "@/components/layout/TheNavigation.vue";
 import TheFooter from "@/components/layout/TheFooter.vue";
 import BaseCard from "@/components/UI/BaseCard.vue";
 import BaseTweet from "@/components/UI/BaseTweet.vue";
+import SignUpPage from "@/pages/SignUpPage.vue";
 
 const app = createApp(App);
 
@@ -17,6 +18,7 @@ app.component("TheNavigation", TheNavigation);
 app.component("TheFooter", TheFooter);
 app.component("BaseCard", BaseCard);
 app.component("BaseTweet", BaseTweet);
+app.component('SignUpPage', SignUpPage);
 
 app.use(store)
 app.use(router);

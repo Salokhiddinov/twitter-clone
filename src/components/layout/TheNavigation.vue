@@ -4,7 +4,7 @@
       <h3>Navigation</h3>
       <ul>
         <li><button><router-link to="/" class="link">Browse</router-link></button></li>
-        <li><button><router-link to="/" class="link">Search</router-link></button></li>
+        <li><button><router-link to="/sign-up" class="link">Sign Up</router-link></button></li>
         <li><button><router-link to="/" class="link">Profile</router-link></button></li>
         <li><button><router-link to="/" class="link">About App</router-link></button></li>
       </ul>
@@ -41,6 +41,8 @@ button {
   transition: 0.2s all ease-out;
   width: 100%;
   border-style: none;
+  font-weight: 400;
+  color: var(--dark-grey);
 }
 
 button:active,
@@ -48,5 +50,6 @@ button:hover,
 button.active {
   background-color: var(--blue);
   color: white;
+  font-weight: 700;
 }
 </style>

@@ -25,6 +25,7 @@
               <router-link to="home" class="username">@emusk</router-link>
               <p class="message">Hey-Yo! Nice clone of 'MY' Twitter😜</p>
             </div>
+            
           </BaseTweet>
         </div>
       </BaseCard>
@@ -39,8 +40,8 @@ export default {
     WelcomeText,
   },
   computed: {
-    count() {
-      return this.$store.state.count;
+    currentUser() {
+      return this.$store.state.currentUser;
     },
   },
 };

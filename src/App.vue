@@ -24,6 +24,7 @@ body {
   background-color: var(--light-grey);
   margin: 0;
   padding: 0;
+  position: relative;
 }
 @media screen and (min-width: 1200px) {
   main {
