@@ -8,7 +8,7 @@
           <button class="sort">All Posts</button>
           <button class="sort">Following</button>
         </BaseCard>
-        <router-link to="new-tweet" class="new-tweet">
+        <router-link to="/new-post" class="new-tweet">
           <i class="fa-solid fa-plus"></i>
           <span class="new-tweet-text">New Tweet</span>
         </router-link>
@@ -16,16 +16,15 @@
       <BaseCard>
         <h2 class="heading">My Feed</h2>
         <div class="feed">
-          <BaseTweet>
+          <BaseTweet v-for="post in posts" :key="post.id">
             <div class="tweet">
               <div class="name">
-                <h4>Elon Musk</h4>
+                <h4>{{`${post.name} ${post.surname}`}}</h4>
                 <button class="follow">Follow</button>
               </div>
-              <router-link to="home" class="username">@emusk</router-link>
-              <p class="message">Hey-Yo! Nice clone of 'MY' Twitter😜</p>
+              <router-link to="home" class="username">{{`@${post.username}`}}</router-link>
+              <p class="message">{{post.post}}</p>
             </div>
-            
           </BaseTweet>
         </div>
       </BaseCard>
@@ -39,12 +38,43 @@ export default {
   components: {
     WelcomeText,
   },
+  data(){
+    return {
+      posts: []
+    }
+  },
+  mounted() {
+      fetch('https://twitter-69051-default-rtdb.firebaseio.com/posts.json').then((response)=>{
+        if (response.ok){
+          return response.json(); 
+        }
+      }).then((data)=>{
+        const tempTweets = [];
+        console.log(tempTweets)
+        console.log(data);
+        for(let key in data){
+          tempTweets.unshift({
+            id: key,
+            name: data[key].name,
+            surname: data[key].surname,
+            username: data[key].username,
+            post: data[key].post,
+          })
+        }
+        this.posts = tempTweets;
+        console.log(this.posts)
+      })
+  },
   computed: {
     currentUser() {
       return this.$store.state.currentUser;
     },
+    currentUserId() {
+      return this.$store.state.currentUser.id;
+    },
   },
-};
+
+}
 </script>
 
 <style scoped>
@@ -138,17 +168,17 @@ h4 {
   align-items: center;
   justify-content: center;
   border-radius: 25px;
-  transition: .3s all ease;
+  transition: 0.3s all ease;
 }
-.new-tweet:hover{
+.new-tweet:hover {
   background-color: white;
   color: var(--dark-grey);
 }
-.new-tweet:active{
+.new-tweet:active {
   background-color: var(--dark-grey);
   color: white;
 }
-.new-tweet-text{
+.new-tweet-text {
   padding-left: 5px;
 }
 </style>

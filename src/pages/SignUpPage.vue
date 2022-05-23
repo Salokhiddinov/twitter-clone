@@ -4,7 +4,7 @@
 
     <h2>Sign Up</h2>
     <p>Already have an account? <router-link to="/" class="login">Log In</router-link></p>
-    <form @submit.prevent>
+    <form @submit.prevent="createUser">
       <div class="form-item">
         <label for="name">Name:</label>
         <input type="text" key="name" v-model="name"/>
@@ -25,7 +25,7 @@
         </button> -->
       </div>
       <div class="button-container">
-        <button class="submit" @click="createUser"><i class="fa-solid fa-user-plus"></i>Create Account</button>
+        <button class="submit"><i class="fa-solid fa-user-plus"></i>Create Account</button>
       </div>
     </form>
   </BaseCard>
@@ -36,15 +36,18 @@ export default {
   data() {
     return {
       passwordIsHidden: true,
-      // name: name.value,
-      // surname: surname.surname,
-      // username: username.username,
-      // password: password.password,
+      name: '',
+      surname: '',
+      username: '',
+      password: ''
     };
   },
   methods: {
+    submitForm(){
+      console.log('submitForm');
+    },
     createUser(){
-      fetch('https://twitter-clone-cc4b0-default-rtdb.firebaseio.com/users.json', {
+      fetch('https://twitter-69051-default-rtdb.firebaseio.com/users.json', {
         method: 'POST',
         header: {
           'Content-Type': 'application/json'
@@ -55,6 +58,8 @@ export default {
           username: this.username,
           password: this.password,
         }),
+      }).then(()=>{
+        console.log('User created!')
       })
     },
     togglePassword() {
@@ -138,6 +143,13 @@ color: var(--dark-grey);
 border-radius: 20px;
 text-decoration: none;
 display: inline-block;
+}
+.back:hover{
+    background: var(--blue);
+    color: white;
+}
+.back:active{
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.34);
 }
 
 .submit:hover {

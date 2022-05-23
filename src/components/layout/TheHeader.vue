@@ -1,6 +1,6 @@
 <template>
     <header>
-        <h2><router-link to='home'><span><i class="fa-brands fa-twitter logo"></i></span>Twitter-Clone</router-link></h2>
+        <h2><router-link to='/'><span><i class="fa-brands fa-twitter logo"></i></span>Twitter-Clone</router-link></h2>
     </header>
 </template>
 
