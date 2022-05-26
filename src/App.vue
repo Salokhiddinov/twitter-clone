@@ -1,10 +1,25 @@
 <template>
+  <TheLoader class="loader" v-if="isLoading"></TheLoader>
   <TheHeader></TheHeader>
-<main>
+<main v-if="!isLoading">
   <router-view></router-view>
 
 </main>
 </template>
+<script>
+export default {
+  data(){
+    return {
+      isLoading: true,
+    }
+  },
+  mounted(){
+    setTimeout(()=>{
+      this.isLoading = false;
+    }, 3000)
+  }
+}
+</script>
 
 
 
@@ -26,6 +41,16 @@ body {
   padding: 0;
   position: relative;
 }
+.loader{
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  background: white;
+}
+
 @media screen and (min-width: 1200px) {
   main {
     display: grid;

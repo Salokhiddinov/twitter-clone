@@ -10,6 +10,7 @@ import BaseCard from "@/components/UI/BaseCard.vue";
 import BaseTweet from "@/components/UI/BaseTweet.vue";
 import NewPostPage from "@/pages/NewPostPage.vue";
 import SignUpPage from "@/pages/SignUpPage.vue";
+import TheLoader from "@/components/layout/TheLoader.vue";
 
 const app = createApp(App);
 
@@ -20,6 +21,7 @@ app.component("TheFooter", TheFooter);
 app.component("BaseCard", BaseCard);
 app.component("BaseTweet", BaseTweet);
 app.component("NewPostPage", NewPostPage);
+app.component("TheLoader", TheLoader);
 app.component("SignUpPage", SignUpPage);
 
 app.use(store);
