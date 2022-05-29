@@ -4,10 +4,10 @@ const store = createStore({
   state() {
     return {
       currentUser: {
-        id: "u4",
-        name: "Jeff",
-        surname: "Bezos",
-        username: "jeffbezos",
+        id: "ux",
+        name: "Sobirjon",
+        surname: "Salakhiddinov",
+        username: "sobirjon",
       },
       allUsers: [],
       allPosts: [],

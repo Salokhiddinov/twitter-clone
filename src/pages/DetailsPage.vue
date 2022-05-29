@@ -1,0 +1,9 @@
+<template>
+    <section>
+        <BaseCard>
+            {{id}}
+            {{name}}
+            {{surname}}
+        </BaseCard>
+    </section>
+</template>

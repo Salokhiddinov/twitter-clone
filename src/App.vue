@@ -1,27 +1,30 @@
 <template>
   <TheLoader class="loader" v-if="isLoading"></TheLoader>
   <TheHeader></TheHeader>
-<main v-if="!isLoading">
-  <router-view></router-view>
-
-</main>
+  <main v-if="!isLoading">
+    <router-view></router-view>
+  </main>
 </template>
 <script>
 export default {
-  data(){
+  data() {
     return {
       isLoading: true,
-    }
+    };
   },
-  mounted(){
-    setTimeout(()=>{
+  mounted() {
+    setTimeout(() => {
       this.isLoading = false;
-    }, 3000)
-  }
-}
+    }, 1000);
+
+    fetch("https://twitter-69051-default-rtdb.firebaseio.com/users.json")
+      .then((response) => response.json())
+      .then((data) => {
+        this.$store.state.allUsers = data;
+    });
+  },
+};
 </script>
-
-
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:ital,wght@0,100;0,400;0,600;0,700;1,100;1,400&display=swap");
@@ -41,7 +44,7 @@ body {
   padding: 0;
   position: relative;
 }
-.loader{
+.loader {
   position: absolute;
   margin: 0;
   padding: 0;

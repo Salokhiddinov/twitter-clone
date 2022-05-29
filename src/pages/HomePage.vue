@@ -19,11 +19,16 @@
           <BaseTweet v-for="post in posts" :key="post.id">
             <div class="tweet">
               <div class="name">
-                <h4>{{`${post.name} ${post.surname}`}}</h4>
+                <h4>{{ `${post.name} ${post.surname}` }}</h4>
                 <button class="follow">Follow</button>
               </div>
-              <router-link to="home" class="username">{{`@${post.username}`}}</router-link>
-              <p class="message">{{post.post}}</p>
+              <router-link
+                to="/"
+                class="username"
+                :id="post.id"
+                >{{ `@${post.username}` }}</router-link
+              >
+              <p class="message">{{ post.post }}</p>
             </div>
           </BaseTweet>
         </div>
@@ -38,32 +43,35 @@ export default {
   components: {
     WelcomeText,
   },
-  data(){
+  data() {
     return {
-      posts: []
-    }
+      posts: this.$store.state.allPosts,
+    };
   },
+  props: ["id"],
   mounted() {
-      fetch('https://twitter-69051-default-rtdb.firebaseio.com/posts.json').then((response)=>{
-        if (response.ok){
-          return response.json(); 
+    fetch("https://twitter-69051-default-rtdb.firebaseio.com/posts.json")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
         }
-      }).then((data)=>{
+      })
+      .then((data) => {
         const tempTweets = [];
-        console.log(tempTweets)
+        console.log(tempTweets);
         console.log(data);
-        for(let key in data){
+        for (let key in data) {
           tempTweets.unshift({
             id: key,
             name: data[key].name,
             surname: data[key].surname,
             username: data[key].username,
             post: data[key].post,
-          })
+          });
         }
         this.posts = tempTweets;
-        console.log(this.posts)
-      })
+        console.log(this.posts);
+      });
   },
   computed: {
     currentUser() {
@@ -72,9 +80,11 @@ export default {
     currentUserId() {
       return this.$store.state.currentUser.id;
     },
+    userDetailLink(id) {
+      return `${id}/details`;
+    },
   },
-
-}
+};
 </script>
 
 <style scoped>
