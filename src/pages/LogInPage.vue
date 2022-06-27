@@ -3,28 +3,30 @@
     <router-link to="/" class="back"
       ><i class="fa-solid fa-delete-left"></i>Back</router-link
     >
-
-    <h2>Sign Up</h2>
+    <h2>Log In</h2>
     <p>
-      Already have an account?
-      <router-link to="/log-in" class="login">Log In</router-link>
+      New to this site?
+      <router-link to="/sign-up" class="login">Sign Up</router-link>
     </p>
     <form @submit.prevent>
+      <!-- Username -->
       <div class="form-item">
-        <label for="name">Name:</label>
-        <input type="text" key="name" v-model="name" />
+        <label for="username">Username:</label>
+        <input type="text" key="username" v-model="inputUsername" />
       </div>
-      <div class="wrongCredentials" v-if="wrongName">
+      <div class="wrongCredentials" v-if="wrongUsername">
         <p>
-          {{ nameProblem }}
+          {{ usernameProblem }}
         </p>
       </div>
+
+      <!-- Password -->
       <div class="form-item">
         <label for="password">Password:</label>
         <input
           :type="passwordVisibility"
           key="password"
-          v-model="password"
+          v-model="inputPassword"
           class="password"
         />
         <button class="show-password-btn" @click="togglePassword">
@@ -38,8 +40,8 @@
         </p>
       </div>
       <div class="button-container">
-        <button class="submit" @click="createUser">
-          <i class="fa-solid fa-user-plus"></i>Create Account
+        <button class="submit" @click="logIn">
+          <i class="fa-solid fa-user-plus"></i>LogIn
         </button>
       </div>
     </form>
@@ -50,99 +52,39 @@
 export default {
   data() {
     return {
+      users: [],
+      inputUsername: "",
+      inputPassword: "",
       passwordIsHidden: true,
-      createId: new Date().toISOString(),
-      name: "",
-      surname: "",
-      username: "",
-      password: "",
-
-      wrongName: false,
-      nameProblem: "",
-      wrongSurname: false,
-      surnameProblem: "",
-      wrongUsername: false,
-      usernameProblem: "",
-      wrongPassword: false,
-      passwordProblem: "",
-
-      correctCreadentials: false,
     };
   },
   methods: {
-    submitForm() {
-      console.log("submitForm");
-    },
-    createUser() {
-      if (this.correctCreadentials) {
-        fetch("https://twitter-69051-default-rtdb.firebaseio.com/users.json", {
-          method: "POST",
-          header: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: this.createId,
-            name: this.name.trim(),
-            surname: this.surname.trim(),
-            username: this.username.trim(),
-            password: this.password.trim(),
-          }),
-        }).then(() => {
-          console.log("User created!");
-          this.$store.state.currentUser = {
-            id: this.createId,
-            name: this.name.trim(),
-            surname: this.surname.trim(),
-            username: this.username.trim(),
-            password: this.password.trim(),
-          };
-          this.$router.push("/home");
+    logIn() {
+      //Getting data from the FirebaseDB
+      fetch("https://twitter-69051-default-rtdb.firebaseio.com/users.json")
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+        })
+        .then((data) => {
+          const tempUsers = [];
+          for (let key in data) {
+            tempUsers.unshift({
+              id: key,
+              name: data[key].name,
+              surname: data[key].surname,
+              username: data[key].username,
+              password: data[key].password,
+            });
+          }
+          this.users = tempUsers;
         });
-      } else {
-        if (this.name.trim() == "") {
-          this.wrongName = true;
-          this.nameProblem = "Name is required";
-        } else {
-          this.wrongName = false;
-          this.nameProblem = "";
-        }
 
-        if (this.surname.trim() == "") {
-          this.wrongSurname = true;
-          this.surnameProblem = "Surname is required";
-        } else {
-          this.wrongSurname = false;
-          this.surnameProblem = "";
-        }
-
-        if (this.username.trim() == "") {
-          this.wrongUsername = true;
-          this.usernameProblem = "Username is required";
-        } else {
-          this.wrongUsername = false;
-          this.usernameProblem = "";
-        }
-
-        if (this.password == "") {
-          this.wrongPassword = true;
-          this.passwordProblem = "Password is required";
-        } else if (this.password.length < 8) {
-          this.wrongPassword = true;
-          this.passwordProblem = "Password must be at least 8 characters long";
-        } else {
-          this.wrongPassword = false;
-          this.passwordProblem = "";
-        }
-      }
-      if (
-        !this.wrongName &&
-        !this.wrongSurname &&
-        !this.wrongUsername &&
-        !this.wrongPassword
-      ) {
-        this.correctCreadentials = true;
-      }
+      // Finding and chekign user credentiaals
+      this.users.find((users) => users.username === this.inputUsername);
     },
+
     togglePassword() {
       this.passwordIsHidden = !this.passwordIsHidden;
       if (this.passwordIsHidden) {
@@ -158,18 +100,6 @@ export default {
       return this.passwordIsHidden ? "password" : "text";
     },
   },
-  // watch: {
-  //   checkCredentials() {
-  //     if (
-  //       !this.wrongName &&
-  //       !this.wrongSurname &&
-  //       !this.wrongUsername &&
-  //       !this.wrongPassword
-  //     ) {
-  //       return true
-  //     }
-  //   },
-  // },
 };
 </script>
 

@@ -17,12 +17,14 @@ export default {
       this.isLoading = false;
     }, 1000);
 
+    // Importing User data
     fetch("https://twitter-69051-default-rtdb.firebaseio.com/users.json")
       .then((response) => response.json())
       .then((data) => {
         this.$store.state.allUsers = data;
-    });
-  },
+      });
+    
+},
 };
 </script>
 

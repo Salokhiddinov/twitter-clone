@@ -4,13 +4,14 @@ const store = createStore({
   state() {
     return {
       currentUser: {
-        id: "ux",
-        name: "Sobirjon",
-        surname: "Salakhiddinov",
-        username: "sobirjon",
+        id: "g1",
+        name: "Guest",
+        surname: "",
+        username: "unauthorized-guest",
       },
-      allUsers: [],
-      allPosts: [],
+      loggedIn: false,
+      allUsers: null,
+      allPosts: null,
     };
   },
   mutations: {

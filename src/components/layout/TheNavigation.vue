@@ -4,13 +4,24 @@
       <h3>Navigation</h3>
       <ul>
         <li><router-link to="/" class="link"><button>Browse</button></router-link></li>
-        <li><router-link to="/sign-up" class="link"><button>Sign Up</button></router-link></li>
+        <li><router-link to="/sign-up" class="link" v-if="!loggedIn"><button>Sign Up</button></router-link></li>
+        <li><router-link to="/log-in" class="link" v-if="loggedIn"><button>Log In</button></router-link></li>
         <li><router-link to="/" class="link"><button>Profile</button></router-link></li>
         <li><router-link to="/" class="link"><button>About App</button></router-link></li>
       </ul>
     </nav>
   </BaseCard>
 </template>
+
+<script>
+export default {
+  computed:{
+    loggedIn(){
+      return this.$store.state.loggedIn
+    }
+  }
+}
+</script>
 
 <style scoped>
 ul {

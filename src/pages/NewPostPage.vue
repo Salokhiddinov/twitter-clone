@@ -1,5 +1,5 @@
 <template>
-  <BaseCard class="base-card">
+  <BaseCard class="base-card" >
     <router-link to="/" class="back"
       ><i class="fa-solid fa-delete-left"></i>Back</router-link
     >
@@ -85,6 +85,16 @@
       </div>
     </form>
   </BaseCard>
+  <!-- <BaseCard class="base-card" v-if="!userIsLoggedIn">
+    <router-link to="/" class="back"
+      ><i class="fa-solid fa-delete-left"></i>Back</router-link
+    >
+    <h2>Ooops!</h2>
+    <h3>You need to be signed in</h3>
+    <div class="button-container">
+      <router-link to="/sign-up" class="submit signup">Sign Up</router-link>
+    </div>
+  </BaseCard> -->
 </template>
 
 <script>
@@ -98,6 +108,9 @@ export default {
     user() {
       return this.$store.state.currentUser;
     },
+    // userIsLoggedIn() {
+    //   return this.$store.state.loggedIn;
+    // },
   },
   methods: {
     pushEmoji(e) {
@@ -228,6 +241,15 @@ form {
 }
 i {
   margin-right: 10px;
+}
+h3 {
+  text-align: center;
+}
+.signup {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
 @media screen and (min-width: 1200px) {

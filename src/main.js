@@ -12,6 +12,7 @@ import NewPostPage from "@/pages/NewPostPage.vue";
 import SignUpPage from "@/pages/SignUpPage.vue";
 import DetailsPage from "@/pages/DetailsPage.vue";
 import TheLoader from "@/components/layout/TheLoader.vue";
+import LogInPage from "@/pages/LogInPage.vue";
 
 const app = createApp(App);
 
@@ -25,6 +26,7 @@ app.component("NewPostPage", NewPostPage);
 app.component("TheLoader", TheLoader);
 app.component("SignUpPage", SignUpPage);
 app.component("DetailsPage", DetailsPage);
+app.component("LogInPage", LogInPage)
 
 app.use(store);
 app.use(router);

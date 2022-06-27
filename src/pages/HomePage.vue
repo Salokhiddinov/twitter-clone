@@ -45,11 +45,12 @@ export default {
   },
   data() {
     return {
-      posts: this.$store.state.allPosts,
+      posts: null,
     };
   },
   props: ["id"],
-  mounted() {
+  mounted(){
+    // Importing Posts data
     fetch("https://twitter-69051-default-rtdb.firebaseio.com/posts.json")
       .then((response) => {
         if (response.ok) {
@@ -71,8 +72,9 @@ export default {
         }
         this.posts = tempTweets;
         console.log(this.posts);
-      });
+      })
   },
+
   computed: {
     currentUser() {
       return this.$store.state.currentUser;
@@ -81,7 +83,7 @@ export default {
       return this.$store.state.currentUser.id;
     },
     userDetailLink(id) {
-      return `${id}/details`;
+      return `/${id}/details`;
     },
   },
 };
